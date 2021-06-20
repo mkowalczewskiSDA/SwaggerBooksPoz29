@@ -16,16 +16,18 @@ import java.util.List;
 @Component
 public class JsonParser {
 
-    private String url = "https://www.googleapis.com/books/v1/volumes?q=java&maxResults=40";
-    List<Book> bookList = new ArrayList<>();
+    private final String url = "https://www.googleapis.com/books/v1/volumes?q=java&maxResults=40";
+    private final List<Book> bookList = new ArrayList<>();
 
     @PostConstruct
     public void parseJson() throws IOException {
-
         ObjectMapper mapper = new ObjectMapper();
         Response response = mapper.readValue(new URL(url), Response.class);
         response.getItems().forEach(item -> bookList.add(new Book(item)));
         System.out.println("test");
     }
 
+    public List<Book> getBookList() {
+        return bookList;
+    }
 }
