@@ -30,4 +30,17 @@ public class BooksService {
                 .collect(Collectors.toList());
     }
 
+    public List<Book> findBooksByCategory(String category) {
+        return jsonParser.getBookList()
+                .stream()
+                .filter(book -> {
+                    if (book.getCategories() != null) {
+                        return book.getCategories().contains(category);
+                    } else {
+                        return false;
+                    }
+                })
+                .collect(Collectors.toList());
+    }
+
 }

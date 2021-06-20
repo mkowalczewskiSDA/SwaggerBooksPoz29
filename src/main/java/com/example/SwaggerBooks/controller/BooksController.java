@@ -6,10 +6,7 @@ import com.example.SwaggerBooks.service.BooksService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,6 +20,11 @@ public class BooksController {
     @ApiOperation("Gets books from our api, by various industry identifiers")
     public Book getBooksByIndustryIdentifier(@RequestParam @ApiParam(value = "Provide ISBN13 or ISBN10 or any other industry identifier") String id) {
         return booksService.findBookByIndustryIdentifier(id).orElseThrow(NoBooksException::new);
+    }
+
+    @GetMapping("/api/{category}/books")
+    public List<Book> findByCategory(@PathVariable String category) {
+        return booksService.findBooksByCategory(category);
     }
 
     @GetMapping("/api/publisher")
