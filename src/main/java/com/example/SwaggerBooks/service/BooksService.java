@@ -5,8 +5,10 @@ import com.example.SwaggerBooks.util.JsonParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 @Service
 public class BooksService {
@@ -19,6 +21,13 @@ public class BooksService {
                 .stream()
                 .filter(book -> book.getIndustryCodes().containsValue(id))
                 .findAny();
+    }
+
+    public List<Book> findBooksByPublisher(String publisher) {
+        return jsonParser.getBookList()
+                .stream()
+                .filter(book -> publisher.equals(book.getPublisher()))
+                .collect(Collectors.toList());
     }
 
 }

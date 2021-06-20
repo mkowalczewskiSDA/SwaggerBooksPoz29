@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class BooksController {
 
@@ -21,6 +23,11 @@ public class BooksController {
     @ApiOperation("Gets books from our api, by various industry identifiers")
     public Book getBooksByIndustryIdentifier(@RequestParam @ApiParam(value = "Provide ISBN13 or ISBN10 or any other industry identifier") String id) {
         return booksService.findBookByIndustryIdentifier(id).orElseThrow(NoBooksException::new);
+    }
+
+    @GetMapping("/api/publisher")
+    public List<Book> findByPublisher(@RequestParam String publisher) {
+        return booksService.findBooksByPublisher(publisher);
     }
 
     @ExceptionHandler(NoBooksException.class)
