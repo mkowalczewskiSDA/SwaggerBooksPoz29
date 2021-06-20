@@ -30,5 +30,4 @@ public class SwaggerConfig {
                 .paths(PathSelectors.regex("/api.*"))
                 .build();
     }
-
 }
