@@ -17,7 +17,7 @@ public class Book {
     private String description;
     private Map<String, String> industryCodes;
     private List<String> categories;
-    private boolean isAvailibleInPl;
+    private boolean isAvailableInPl;
     private Double priceInPl;
 
     public Book(Item item) {
@@ -35,8 +35,8 @@ public class Book {
                 ));
         this.categories = item.getVolumeInfo().getCategories();
         //NOT_FOR_SALE=false reszta true
-        this.isAvailibleInPl=!item.getSaleInfo().getSaleability().equals("NOT_FOR_SALE");
-        if (this.isAvailibleInPl) {
+        this.isAvailableInPl =!item.getSaleInfo().getSaleability().equals("NOT_FOR_SALE");
+        if (this.isAvailableInPl) {
             if (item.getSaleInfo().getSaleability().equals("FREE")) {
                 this.priceInPl = 0.0;
             } else {
