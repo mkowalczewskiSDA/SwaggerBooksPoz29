@@ -65,4 +65,8 @@ public class BooksService {
                 .collect(Collectors.toList());
     }
 
+    public void add(Book book) {
+        jsonParser.getBookList().add(book);
+    }
+
 }

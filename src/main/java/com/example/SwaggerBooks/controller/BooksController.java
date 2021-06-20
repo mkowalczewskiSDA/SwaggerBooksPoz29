@@ -42,6 +42,13 @@ public class BooksController {
         return booksService.getBooksByPrice();
     }
 
+    @PutMapping("/api/new")
+    public Book addBook(@RequestBody Book book) {
+        System.out.println(book);
+        booksService.add(book);
+        return book;
+    }
+
     @ExceptionHandler(NoBooksException.class)
     @GetMapping("/api/book/nonexisting")
     public String nonExisting() {
