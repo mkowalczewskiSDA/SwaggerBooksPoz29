@@ -32,6 +32,11 @@ public class BooksController {
         return booksService.findBooksByPublisher(publisher);
     }
 
+    @GetMapping("/api/title")
+    public List<Book> findByTitle(@RequestParam String title) {
+        return booksService.findByTitleStartingWith(title);
+    }
+
     @GetMapping("/api/price")
     public List<Book> getByPrice() {
         return booksService.getBooksByPrice();

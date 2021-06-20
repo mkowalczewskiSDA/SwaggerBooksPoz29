@@ -52,4 +52,17 @@ public class BooksService {
                 .collect(Collectors.toList());
     }
 
+    public List<Book> findByTitleStartingWith(String startsWith) {
+        return jsonParser.getBookList()
+                .stream()
+                .filter(book -> {
+                    if (book.getTitle() != null) {
+                        return book.getTitle().startsWith(startsWith);
+                    } else {
+                        return false;
+                    }
+                })
+                .collect(Collectors.toList());
+    }
+
 }
