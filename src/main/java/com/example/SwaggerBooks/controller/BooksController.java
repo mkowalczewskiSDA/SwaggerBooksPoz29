@@ -32,6 +32,11 @@ public class BooksController {
         return booksService.findBooksByPublisher(publisher);
     }
 
+    @GetMapping("/api/price")
+    public List<Book> getByPrice() {
+        return booksService.getBooksByPrice();
+    }
+
     @ExceptionHandler(NoBooksException.class)
     @GetMapping("/api/book/nonexisting")
     public String nonExisting() {

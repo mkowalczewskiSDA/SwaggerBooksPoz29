@@ -5,6 +5,7 @@ import com.example.SwaggerBooks.util.JsonParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -40,6 +41,14 @@ public class BooksService {
                         return false;
                     }
                 })
+                .collect(Collectors.toList());
+    }
+
+    public List<Book> getBooksByPrice() {
+        return jsonParser.getBookList()
+                .stream()
+                .filter(Book::isAvailableInPl)
+                .sorted(Comparator.comparing(Book::getPriceInPl).reversed())
                 .collect(Collectors.toList());
     }
 
