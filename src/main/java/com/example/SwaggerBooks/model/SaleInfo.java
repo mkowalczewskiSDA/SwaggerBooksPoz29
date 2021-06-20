@@ -9,5 +9,5 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SaleInfo {
     String saleability;
-    List<Price> listPrices;
+    Price listPrice;
 }

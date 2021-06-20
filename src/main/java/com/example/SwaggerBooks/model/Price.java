@@ -6,6 +6,6 @@ import lombok.Data;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Price {
-    private String currency;
-    private double amount;
+    private String currencyCode;
+    private Double amount;
 }
