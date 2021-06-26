@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
 
-@SpringBootTest
+@SpringBootTest(classes = [BooksService.class, JsonParser.class])
 class BooksServiceTest extends Specification {
 
     @Autowired
