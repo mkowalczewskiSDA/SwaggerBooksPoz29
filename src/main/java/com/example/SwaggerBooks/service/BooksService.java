@@ -33,7 +33,7 @@ public class BooksService {
                 .filter(book -> publisher.equals(book.getPublisher()))
                 .collect(Collectors.toList());
     }
-
+    //
     public List<Book> findBooksByCategory(String category) {
         return jsonParser.getBookList()
                 .stream()
@@ -46,7 +46,7 @@ public class BooksService {
                 })
                 .collect(Collectors.toList());
     }
-
+    //
     public List<Book> getBooksByPrice() {
         return jsonParser.getBookList()
                 .stream()
