@@ -23,6 +23,26 @@ class BooksServiceTest extends Specification {
             authors: ["Test", "Test1"],
             categories: ["test"],
             industryCodes: ["isbn":"test"]
+    ), new Book(
+            description: "Test2",
+            publisher: "Test2",
+            title: "Test2",
+            publishedDate: "1998",
+            isAvailableInPl: true,
+            priceInPl: 30,
+            authors: ["Test2", "Test3"],
+            categories: ["test"],
+            industryCodes: ["isbn":"test2"]
+    ), new Book(
+            description: "Test3",
+            publisher: "Test3",
+            title: "Test3",
+            publishedDate: "1997",
+            isAvailableInPl: false,
+            priceInPl: null,
+            authors: ["Test"],
+            categories: ["test2"],
+            industryCodes: ["isbn":"test3", "isbn2":"test4"]
     )]
 
     def setup() {
