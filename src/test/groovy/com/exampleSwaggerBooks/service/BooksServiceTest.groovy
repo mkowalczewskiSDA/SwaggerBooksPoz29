@@ -28,7 +28,7 @@ class BooksServiceTest extends Specification {
     ), new Book(
             description: "Test2",
             publisher: "Test2",
-            title: "Test2",
+            title: "Pest2",
             publishedDate: "1998",
             isAvailableInPl: true,
             priceInPl: 30,
@@ -74,17 +74,28 @@ class BooksServiceTest extends Specification {
     }
 
     def "should return each book for each publisher for #publisher"() {
-        given:
+        given: "setting up values"
         jsonParser.getBookList() >> books
-        when:
+        when: "executing search by publisher #publisher"
         def booksByPublisher = service.findBooksByPublisher(publisher)
-        then:
+        then: "published date should be the same as provided in where"
         booksByPublisher.get(0).publishedDate == publishedDate
         where:
         publisher  | publishedDate
         "Test"     | "1999"
         "Test2"    | "1998"
         "Test3"    | "1997"
+    }
+
+    def "find books by title starting with"() {
+        given:
+        jsonParser.getBookList() >> books
+        when:
+        def bookByTitle = service.findByTitleStartingWith("Te")
+        then:
+        bookByTitle.size() == 2
+        bookByTitle.get(0) == books.get(0)
+        bookByTitle.get(1) == books.get(2)
     }
 
 }
