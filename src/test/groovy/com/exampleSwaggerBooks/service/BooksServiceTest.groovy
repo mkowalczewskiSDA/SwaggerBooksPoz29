@@ -15,7 +15,7 @@ class BooksServiceTest extends Specification {
     @Autowired
     BooksService service
     JsonParser jsonParser = Mock()
-    List<Book> books = [new Book(
+    static List<Book> books = [new Book(
             description: "Test",
             publisher: "Test",
             title: "Test",
@@ -96,6 +96,21 @@ class BooksServiceTest extends Specification {
         bookByTitle.size() == 2
         bookByTitle.get(0) == books.get(0)
         bookByTitle.get(1) == books.get(2)
+    }
+
+    def "should return book for each industry identifer"() {
+        given: "setting up values"
+        jsonParser.getBookList() >> books
+        when: "executing search by publisher #publisher"
+        def booksByPublisher = service.findBookByIndustryIdentifier(identirier)
+        then: "published date should be the same as provided in where"
+        booksByPublisher.get() == booksFromList
+        where:
+        identirier  | booksFromList
+        "test"      | books.get(0)
+        "test2"     | books.get(1)
+        "test3"     | books.get(2)
+        "test4"     | books.get(2)
     }
 
 }
