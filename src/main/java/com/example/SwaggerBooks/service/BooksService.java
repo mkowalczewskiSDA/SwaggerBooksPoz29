@@ -8,14 +8,17 @@ import org.springframework.stereotype.Service;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @Service
 public class BooksService {
 
-    @Autowired
     JsonParser jsonParser;
+
+    @Autowired
+    public void setJsonParser(JsonParser jsonParser) {
+        this.jsonParser = jsonParser;
+    }
 
     public Optional<Book> findBookByIndustryIdentifier(String id) {
         return jsonParser.getBookList()
