@@ -1,5 +1,6 @@
 package com.example.SwaggerBooks.controller;
 
+import com.example.SwaggerBooks.aspect.ExampleAnnotation;
 import com.example.SwaggerBooks.excepetion.NoBooksException;
 import com.example.SwaggerBooks.model.Book;
 import com.example.SwaggerBooks.service.BooksService;
@@ -37,11 +38,13 @@ public class BooksController {
         return booksService.findByTitleStartingWith(title);
     }
 
+    @ExampleAnnotation
     @GetMapping("/api/price")
     public List<Book> getByPrice() {
         return booksService.getBooksByPrice();
     }
 
+    @ExampleAnnotation
     @PutMapping("/api/new")
     public Book addBook(@RequestBody Book book) {
         System.out.println(book);

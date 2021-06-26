@@ -23,6 +23,7 @@ public class SwaggerConfig {
 
     @Bean
     public Docket bookApi() {
+        System.out.println("inside method");
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .pathMapping("/")
